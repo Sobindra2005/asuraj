@@ -27,7 +27,7 @@ This project aims to create a platform specifically for IT roles, where users ca
     HTML/CSS/JavaScript
     Git and GitHub for version control and collaboration
     react.js
-    tailwind css
+    tailwind css    
     
 # Team Collaboration:
 We are using Jira for project management and task tracking, dividing tasks among team members for efficient development. Additionally,we are using discord for  regular meetings and updates which will ensure smooth progress throughout the project.
