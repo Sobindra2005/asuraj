@@ -1,10 +1,11 @@
-const express=require('express')
-const router=express.Router()
-const {}=require('../controllers/signup')
+const express = require("express");
+const router = express.Router();
+const { userDataForLogin } = require("../controllers/signup");
 
-// router.get('/signUp',()=>{
-// //fetch the rendering for get request 
-// })
+router.get("/signup/", (req, res) => {
+  res.send({ msg: "success" });
+});
 
+router.post("/signup/", userDataForLogin);
 
-router.post('/signUp',)
+module.exports = router;

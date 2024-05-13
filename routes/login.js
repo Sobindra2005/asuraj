@@ -1,9 +1,11 @@
 const express=require('express')
 const router=express.Router()
-const {}=require('../controllers/login')
+const {authenticateUserLogin}=require('../controllers/login')
 
-// router.get('/login',()=>{
-//     //fetch the render for login 
-// })
+router.get('/login/',(req,res)=>{
+   res.send({msg:"success"})
+})
 
-router.post('/login',)
+router.post('/login/',authenticateUserLogin)
+
+module.exports=router
