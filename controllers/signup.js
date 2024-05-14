@@ -10,7 +10,8 @@ async function userDataForLogin(req, res) {
     });
     const allUsersSignupDetails = user.find();
     
-    res.send("successfully posted the data !!");
+    res.send({msg:'successfully signup '});
+    res.redirect("/login/")
 }
 
 module.exports = { userDataForLogin };

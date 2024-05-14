@@ -3,7 +3,7 @@ const router = express.Router();
 const { userDataForLogin } = require("../controllers/signup");
 
 router.get("/signup/", (req, res) => {
-  res.send({ msg: "success" });
+  res.send({ msg: "on signup page" });
 });
 
 router.post("/signup/", userDataForLogin);

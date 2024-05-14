@@ -11,11 +11,13 @@ async function userLogin(req, res) {
     const authenticatedUser = await user.find({ email, password });// checks whether the user having the email and password is on database or not 
     if (!authenticatedUser) { //if not then this will execute
         res.send({ msg: "Sorry , email and passowrd doesnot matched !!" });
+        res.render('/login/')
     } else {//else success
         res.send({ msg: "successfully login" });
+        res.redirect('/home/')
     }
 
-    const token=setUser(user)
+    const token=setUser(authenticatedUser)
     
 }
 
