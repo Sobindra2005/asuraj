@@ -12,12 +12,11 @@ This project aims to create a platform specifically for IT roles, where users ca
     Commenting system
     Basic admin functionalities
 
-# My roles:
+# My contributions:
 
     Designed and developed RESTful APIs using Node.js and Express.js 
-    Implemented user authentication system for signup and login functionalities
+    Implemented secure user authentication system for signup and login functionalities
     Provided technical guidance and support to the team
-  
 
 # Tools and Technologies:
     Node.js
