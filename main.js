@@ -2,10 +2,10 @@ const express=require("express");
 const app=express()
 const port=3000;
 const{connectToMongoDB}=require('./mongodbConnection')
-const loginRoutes =require('./authentication/routes/login')
-const signupRoutes=require('./authentication/routes/signup')
-const homeRouter=require('./authentication/routes/home')
-const{tokenAuthenticate}=require('./authentication/middleware/authenticationCheck')
+const loginRoutes =require('./signup-login-authentication/routes/login')
+const signupRoutes=require('./signup-login-authentication/routes/signup')
+const homeRouter=require('./signup-login-authentication/routes/home')
+const{tokenAuthenticate}=require('./signup-login-authentication/middleware/authenticationCheck')
 
 app.use(express.urlencoded({extended:false})) 
 
