@@ -1,0 +1,6 @@
+HASHING:-
+
+1.login ---> compare the password 
+2.signup ----> provide the hash password and store it in the database 
+
+

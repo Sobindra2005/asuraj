@@ -1,4 +1,5 @@
-const { user , LocalSetupData} = require("../models/userAccountDetails");
+const { user, LocalSetupData } = require("../models/userAccountDetails");
+const bcrypt = require('bcrypt')
 
 async function userDataForSignup(req, res) {
     const { firstName, lastName, email, password } = req.body;
@@ -8,27 +9,29 @@ async function userDataForSignup(req, res) {
         email,
         password,
     });
-    const allUsersSignupDetails = user.find();
-    
-    res.send({msg:'successfully signup '});
-    res.redirect("/login/")
+    const salt = await bcrypt.genSalt(10)
+    const hashedPasssword = await bcrypt.hash(password, salt)//generate the hash form of password 
+    const updateUser = await user.updateOne({ email: email }, { $set: { password: hashedPasssword } })
+    const allUsersSignupDetails = await user.find();
+    res.status(200).send(updateUser);
+
 }
 
 
-async function userDataForProfileSetup(){
-    const{ dob,passion,experience,country,createdBy}=req.body
- await LocalSetupData.create({
-    dob,
-    passion,
-    experience,
-    country,
-    createdBy:req.user._id
- })
- const profileSetupData=LocalSetupData.find({
-    createdBy:req.user._id
- })
+async function userDataForProfileSetup() {
+    const { dob, passion, experience, country, createdBy } = req.body
+    await LocalSetupData.create({
+        dob,
+        passion,
+        experience,
+        country,
+        createdBy: req.user._id
+    })
+    const profileSetupData = LocalSetupData.find({
+        createdBy: req.user._id
+    })
 
- res.send( profileSetupData )
+    res.send(profileSetupData)
 }
 
-module.exports = { userDataForSignup,userDataForProfileSetup };
+module.exports = { userDataForSignup, userDataForProfileSetup };

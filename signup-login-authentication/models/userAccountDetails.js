@@ -46,6 +46,9 @@ const profileDataSchema = new mongoose.Schema({
 
 })
 
+
+
+
 const user = mongoose.model('signup', signUpSchema)
 const LocalSetupData = mongoose.model('LocalSetupData', profileDataSchema)
 

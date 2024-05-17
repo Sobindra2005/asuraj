@@ -1,24 +1,36 @@
 const { user } = require("../models/userAccountDetails");
-const{setUser} =require("../service/authentication")
+const { setUser } = require("../service/authentication")
+const bcrypt = require('bcrypt')
 
 async function userLogin(req, res) {
-    const { email, password } = req.body;//take the email and password from the body
-    if (!req.body) {
-        res.send({ msg: "didn't get the data from the body !" });
+
+    try {
+        const { email, password } = req.body;//take the email and password from the body
+        const userData = await user.findOne({ email })
+        console.log(userData)
+        const userPassword= await userData.password
+        const passwordMatch = await bcrypt.compare(password, userData.password)
+        if (!email || !password) {
+            res.status(400).send({ msg: "email and password is required" });
+        }
+        if (!userData) {
+            res.status(404).send({ msg: "user not found!!" })
+        }
+        if (passwordMatch) {
+            const token = setUser(userData)
+            res.status(200).send(userData)
+
+        }
+        else {
+            res.status(401).send({ msg: "incorrect password!!" })
+        }
+     
+
+    }
+    catch (err) {
+        console.log("err occur during authenticating ", err)
     }
 
-
-    const authenticatedUser = await user.find({ email, password });// checks whether the user having the email and password is on database or not 
-    if (!authenticatedUser) { //if not then this will execute
-        res.send({ msg: "Sorry , email and passowrd doesnot matched !!" });
-        res.render('/login/')
-    } else {//else success
-        res.send({ msg: "successfully login" });
-        res.redirect('/home/')
-    }
-
-    const token=setUser(authenticatedUser)
-    
 }
 
 module.exports = { userLogin };

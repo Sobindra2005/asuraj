@@ -10,9 +10,9 @@ const{tokenAuthenticate}=require('./signup-login-authentication/middleware/authe
 app.use(express.urlencoded({extended:false})) 
 
 
-require('dotenv').config()
-const uri=process.env.uri
-connectToMongoDB(uri);
+// require('dotenv').config()
+// const uri=process.env.uri
+connectToMongoDB('mongodb://127.0.0.1:27017/asuraj');
 
 
 app.use('/',loginRoutes)
